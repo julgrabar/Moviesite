@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
   const [films, status] = useFetching(fetchTrending);
-  const location = useLocation();
+  const { pathname, search } = useLocation();
 
   return (
     <>
@@ -17,7 +17,7 @@ const HomePage = () => {
       )}
       {status === statusList.LOAD && <Loading />}
       {status === statusList.IDLE && films && (
-        <FilmsList films={films} loc={location.pathname} />
+        <FilmsList films={films} loc={pathname + search} />
       )}
     </>
   );

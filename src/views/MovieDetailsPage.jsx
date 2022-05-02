@@ -9,7 +9,7 @@ import { Loading } from 'components/Loading/Loading';
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  // const navigation = useNavigate();
+  // const navigate = useNavigate();
   const [movie, status] = useFetching(fetchMovieDetails, movieId);
 
   // console.log(location);

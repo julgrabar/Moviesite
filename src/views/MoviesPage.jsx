@@ -1,27 +1,32 @@
 import { FilmsList } from 'components/FilmsList/FilmsList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { useFetching } from 'hooks/useFetching';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { searchMovies } from 'services/api-service';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResult, status] = useFetching(searchMovies, searchValue);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchValue, setSearchValue] = useState('');
+  // const [searchResult, status] = useFetching(searchMovies, searchValue);
+  const [searchResult, status] = useFetching(
+    searchMovies,
+    searchParams.get('query') || ''
+  );
   const { search, pathname } = useLocation();
 
   useEffect(() => {
     const query = new URLSearchParams(search).get('query');
     if (query) {
-      setSearchValue(query);
+      setSearchParams({ query });
     }
-  }, []);
+  }, [search, setSearchParams]);
 
   return (
     <>
-      <SearchForm onSub={setSearchValue} />
+      <SearchForm onSub={setSearchParams} />
 
       {status === statusList.ERR && (
         <p>Something is wrong... Try to reload the page</p>
