@@ -6,6 +6,7 @@ import { searchMovies } from 'services/api-service';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { Head } from './Head.styled';
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +27,7 @@ const MoviesPage = () => {
 
   return (
     <>
+      <Head>Search of movies</Head>
       <SearchForm onSub={setSearchParams} />
 
       {status === statusList.ERR && (
@@ -35,7 +37,6 @@ const MoviesPage = () => {
       {status === statusList.LOAD && <Loading />}
       {status === statusList.IDLE && searchResult && (
         <>
-          <h1>Search results</h1>
           {searchResult && searchResult.length === 0 ? (
             <p>There are no films with this name</p>
           ) : (

@@ -1,14 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
+import bgImage from '../images/Background.jpg';
 
 export const Global = createGlobalStyle`
-img{
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
+
 
 html{
     box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins;
+  color: #EBEEF5;
+  /* background:  */
+  /*url(${bgImage}) no-repeat,   */
+  background: linear-gradient(#121829, #121829); 
+  /*  */
+ 
+  
+  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -22,6 +34,12 @@ html{
   max-width: 100vw;
 }
 
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -30,6 +48,7 @@ ul {
 
 a{
     text-decoration: none;
+    color: inherit
 }
 h1,
 h2,
@@ -40,30 +59,15 @@ h6,
 p{
     margin: 0;
 }
-    /* body {
-  box-sizing: border-box;
-  width: 100vw;
-  overflow-x: hidden;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  color: #212121;
-  background-color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-img {
+
+
+
+
+/* img {
   display: block;
   max-width: 100%;
   height: auto;
-} */
+}  */
 /* .App {
   display: grid;
   grid-template-columns: 1fr;

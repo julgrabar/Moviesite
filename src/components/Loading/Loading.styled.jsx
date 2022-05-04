@@ -6,6 +6,8 @@ export const RoundLoader = styled.div`
   justify-content: center;
   align-items: center;
   padding: 100px 0;
+  background-color: #121829;
+  height: 100vh;
   .lds-ellipsis {
     display: inline-block;
     position: relative;

@@ -4,6 +4,7 @@ import { fetchTrending } from 'services/api-service';
 import { useFetching } from 'hooks/useFetching';
 import { statusList } from 'hooks/useFetching';
 import { useLocation } from 'react-router-dom';
+import { Head } from './Head.styled';
 
 const HomePage = () => {
   const [films, status] = useFetching(fetchTrending);
@@ -11,7 +12,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Trending films</h1>
+      <Head>Trending films</Head>
       {status === statusList.ERR && (
         <p>Something is wrong... Try to reload the page</p>
       )}
