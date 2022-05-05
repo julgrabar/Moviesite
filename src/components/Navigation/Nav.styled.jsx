@@ -7,6 +7,10 @@ export const Nav = styled.nav`
   -moz-box-shadow: 0px -9px 51px 0px rgba(50, 59, 84, 0.2);
   box-shadow: 0px -9px 51px 0px rgba(50, 59, 84, 0.2);
 
+  .active {
+    color: #0077ff;
+  }
+
   div {
     display: flex;
   }

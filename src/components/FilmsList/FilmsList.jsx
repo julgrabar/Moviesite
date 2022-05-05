@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ListItem, List, Vote } from './FilmsList.styled';
+import posterInstead from '../../images/poster.jpg';
 
 export const FilmsList = ({ films, loc }) => {
   return (
@@ -13,9 +14,13 @@ export const FilmsList = ({ films, loc }) => {
           vote_average: vote,
         }) => (
           <ListItem key={id}>
-            <Link to={`/movies/${id}`} state={{ from: loc }}>
+            <Link to={`/movies/${id}`} state={{ from: loc }} loc={loc}>
               <img
-                src={`https://image.tmdb.org/t/p/w500${poster}`}
+                src={
+                  poster
+                    ? `https://image.tmdb.org/t/p/w500${poster}`
+                    : posterInstead
+                }
                 alt={title ?? original_title + 'poster'}
               />
               <div className="film-info">

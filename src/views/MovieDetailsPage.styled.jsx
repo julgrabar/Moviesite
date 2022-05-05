@@ -15,7 +15,7 @@ export const MovieDetails = styled.div`
 `;
 
 export const MovieInfo = styled.div`
-  span {
+  .info-block {
     margin-bottom: 24px;
     font-weight: 400;
     font-size: 20px;

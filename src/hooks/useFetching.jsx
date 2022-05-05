@@ -6,7 +6,7 @@ export const statusList = {
   ERR: 'error',
 };
 
-export const useFetching = (callback, fetchParametr = null) => {
+export const useFetching = (callback, page, fetchParametr = null) => {
   const [state, setState] = useState(null);
   const [status, setStatus] = useState(statusList.IDLE);
 
@@ -18,7 +18,7 @@ export const useFetching = (callback, fetchParametr = null) => {
     const fetchFilms = async () => {
       setStatus(statusList.LOAD);
       try {
-        const result = await callback(fetchParametr);
+        const result = await callback(page, fetchParametr);
         setState(result);
       } catch (error) {
         console.log(error);
@@ -28,7 +28,7 @@ export const useFetching = (callback, fetchParametr = null) => {
       }
     };
     fetchFilms();
-  }, [callback, fetchParametr]);
+  }, [page, callback, fetchParametr]);
 
   return [state, status];
 };

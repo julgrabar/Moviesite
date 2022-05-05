@@ -6,7 +6,7 @@ import { statusList } from 'hooks/useFetching';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [actors, status] = useFetching(fetchMovieCredits, movieId);
+  const [actors, status] = useFetching(fetchMovieCredits, movieId, null);
 
   return (
     <>

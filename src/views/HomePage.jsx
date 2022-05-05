@@ -5,10 +5,16 @@ import { useFetching } from 'hooks/useFetching';
 import { statusList } from 'hooks/useFetching';
 import { useLocation } from 'react-router-dom';
 import { Head } from './Head.styled';
+import { useState } from 'react';
 
 const HomePage = () => {
-  const [films, status] = useFetching(fetchTrending);
+  const [page, setPage] = useState(1);
+  const [films, status] = useFetching(fetchTrending, page, null);
   const { pathname, search } = useLocation();
+
+  const onPagBtn = value => {
+    setPage(prevPage => prevPage + value);
+  };
 
   return (
     <>
@@ -18,7 +24,17 @@ const HomePage = () => {
       )}
       {status === statusList.LOAD && <Loading />}
       {status === statusList.IDLE && films && (
-        <FilmsList films={films} loc={pathname + search} />
+        <>
+          <FilmsList films={films} loc={pathname + search} />
+          {page > 1 && (
+            <button type="button" onClick={() => onPagBtn(-1)}>
+              Prev page
+            </button>
+          )}
+          <button type="button" onClick={() => onPagBtn(1)}>
+            Next page
+          </button>
+        </>
       )}
     </>
   );

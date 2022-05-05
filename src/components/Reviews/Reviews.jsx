@@ -6,8 +6,9 @@ import { statusList } from 'hooks/useFetching';
 
 // добавить заглушку если нет отзывов и вообще все заглушки
 const Reviews = () => {
+  const page = 1;
   const { movieId } = useParams();
-  const [reviews, status] = useFetching(fetchMovieReviews, movieId);
+  const [reviews, status] = useFetching(fetchMovieReviews, page, movieId);
 
   return (
     <>
