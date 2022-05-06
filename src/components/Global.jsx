@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import bgImage from '../images/Background.jpg';
 
 export const Global = createGlobalStyle`
 
@@ -12,13 +11,7 @@ body {
   margin: 0;
   font-family: Poppins;
   color: #EBEEF5;
-  /* background:  */
-  /*url(${bgImage}) no-repeat,   */
-  background: linear-gradient(#121829, #121829); 
-  /*  */
- 
-  
-  
+  background-color: #121829; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

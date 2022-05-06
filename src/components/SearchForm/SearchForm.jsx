@@ -1,9 +1,8 @@
-// import { useState } from 'react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Form } from './Form.styled';
 import searchSvg from '../../images/search.svg';
-// import { useSearchParams } from 'react-router-dom';
 
 export const SearchForm = ({ onSub }) => {
   const { search } = useLocation();
@@ -19,7 +18,7 @@ export const SearchForm = ({ onSub }) => {
       return;
     }
 
-    onSub(query ? { query } : { query: '' });
+    onSub({ query: query || '' });
   };
 
   const onSearchInput = e => {
@@ -34,9 +33,9 @@ export const SearchForm = ({ onSub }) => {
           type="text"
           name="search"
           onChange={onSearchInput}
-          // value={searchParams.get('query') || ''}
           value={query}
-          placeholder="Search Movies or TV Shows"
+          placeholder="Search Movies"
+          autoComplete="off"
         />
       </label>
       <button type="submit">
@@ -44,4 +43,8 @@ export const SearchForm = ({ onSub }) => {
       </button>
     </Form>
   );
+};
+
+SearchForm.propTypes = {
+  onSub: PropTypes.func.isRequired,
 };

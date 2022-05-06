@@ -8,6 +8,7 @@ export const statusList = {
 
 export const useFetching = (callback, page, fetchParametr = null) => {
   const [state, setState] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
   const [status, setStatus] = useState(statusList.IDLE);
 
   useEffect(() => {
@@ -19,7 +20,8 @@ export const useFetching = (callback, page, fetchParametr = null) => {
       setStatus(statusList.LOAD);
       try {
         const result = await callback(page, fetchParametr);
-        setState(result);
+        setState(result.results);
+        setTotalPages(result.pages);
       } catch (error) {
         console.log(error);
         setStatus(statusList.ERR);
@@ -30,5 +32,5 @@ export const useFetching = (callback, page, fetchParametr = null) => {
     fetchFilms();
   }, [page, callback, fetchParametr]);
 
-  return [state, status];
+  return [state, status, totalPages];
 };

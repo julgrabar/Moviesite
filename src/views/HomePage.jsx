@@ -1,20 +1,17 @@
+import { useLocation } from 'react-router-dom';
 import { FilmsList } from 'components/FilmsList/FilmsList';
 import { Loading } from 'components/Loading/Loading';
 import { fetchTrending } from 'services/api-service';
 import { useFetching } from 'hooks/useFetching';
 import { statusList } from 'hooks/useFetching';
-import { useLocation } from 'react-router-dom';
 import { Head } from './Head.styled';
-import { useState } from 'react';
+import { Btn, Controls } from './MovieDetailsPage.styled';
+import { usePagination } from 'hooks/usePagination';
 
 const HomePage = () => {
-  const [page, setPage] = useState(1);
-  const [films, status] = useFetching(fetchTrending, page, null);
+  const [page, onPagBtn] = usePagination(1);
+  const [films, status, totalPages] = useFetching(fetchTrending, page, null);
   const { pathname, search } = useLocation();
-
-  const onPagBtn = value => {
-    setPage(prevPage => prevPage + value);
-  };
 
   return (
     <>
@@ -26,14 +23,18 @@ const HomePage = () => {
       {status === statusList.IDLE && films && (
         <>
           <FilmsList films={films} loc={pathname + search} />
-          {page > 1 && (
-            <button type="button" onClick={() => onPagBtn(-1)}>
-              Prev page
-            </button>
-          )}
-          <button type="button" onClick={() => onPagBtn(1)}>
-            Next page
-          </button>
+          <Controls>
+            {page > 1 && (
+              <Btn as="button" type="button" onClick={() => onPagBtn(-1)}>
+                Prev page
+              </Btn>
+            )}
+            {page < totalPages && (
+              <Btn as="button" type="button" onClick={() => onPagBtn(1)}>
+                Next page
+              </Btn>
+            )}
+          </Controls>
         </>
       )}
     </>

@@ -1,1 +1,0 @@
-export const mapper = (films) => films.map(({backdrop_path:backdrop,genres,id,poster_path:poster,overview,release_date:date,original_title, title,vote_average:vote})=>({backdrop,genres,id,poster,overview,date,original_title, title,vote}))

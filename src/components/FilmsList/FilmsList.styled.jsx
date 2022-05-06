@@ -31,6 +31,7 @@ export const ListItem = styled.li`
 
   img {
     border-radius: 5px;
+    margin-bottom: 18px;
   }
 
   .film-info {
@@ -41,7 +42,6 @@ export const ListItem = styled.li`
     letter-spacing: 0.02em;
 
     color: #ebeef5;
-    padding-top: 18px;
   }
 `;
 
@@ -62,4 +62,11 @@ export const Vote = styled.span`
   .md-16 {
     font-size: 16px;
   }
+`;
+
+export const ImgThumb = styled.div`
+  background: #20283e;
+  border-radius: 8px;
+  width: 100%;
+  height: 400px;
 `;

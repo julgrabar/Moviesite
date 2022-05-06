@@ -15,7 +15,8 @@ export const MovieDetails = styled.div`
 `;
 
 export const MovieInfo = styled.div`
-  .info-block {
+  span.info-block {
+    display: block;
     margin-bottom: 24px;
     font-weight: 400;
     font-size: 20px;
@@ -30,6 +31,7 @@ export const MovieInfo = styled.div`
   }
 
   .tagline {
+    display: block;
     font-weight: 700;
     font-size: 24px;
     line-height: 1.33;
@@ -51,14 +53,24 @@ export const StyledLink = styled(Link)`
   margin-right: 10px;
 `;
 
-export const BtnLink = styled(Link)`
+export const Btn = styled(Link)`
   display: inline-block;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #3535a9;
+  padding: 16px 32px;
+  background-color: #7b6ef6;
   color: white;
-  border-radius: 5px;
+  border-radius: 12px;
+  border: none;
   text-decoration: none;
+  cursor: pointer;
+
+  :not(:last-child) {
+    margin-right: 16px;
+  }
+`;
+
+export const Controls = styled.div`
+  text-align: center;
+  padding: 32px 0;
 `;
 
 export const BackdropPoster = styled.div`

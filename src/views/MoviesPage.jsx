@@ -1,26 +1,24 @@
+import { useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { FilmsList } from 'components/FilmsList/FilmsList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { useFetching } from 'hooks/useFetching';
-import { useEffect, useState } from 'react';
 import { searchMovies } from 'services/api-service';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import { Head } from './Head.styled';
+import { Btn, Controls } from './MovieDetailsPage.styled';
+import { usePagination } from 'hooks/usePagination';
 
 const MoviesPage = () => {
-  const [page, setPage] = useState(1);
+  const [page, onPagBtn] = usePagination(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchResult, status] = useFetching(
+  const [searchResult, status, totalPages] = useFetching(
     searchMovies,
     page,
     searchParams.get('query') || ''
   );
   const { search, pathname } = useLocation();
-
-  const onPagBtn = value => {
-    setPage(prevPage => prevPage + value);
-  };
 
   useEffect(() => {
     const query = new URLSearchParams(search).get('query');
@@ -31,7 +29,7 @@ const MoviesPage = () => {
 
   return (
     <>
-      <Head>Search of movies</Head>
+      <Head>Movies search</Head>
       <SearchForm onSub={setSearchParams} />
 
       {status === statusList.ERR && (
@@ -46,14 +44,18 @@ const MoviesPage = () => {
           ) : (
             <FilmsList films={searchResult} loc={pathname + search} />
           )}
-          {page > 1 && (
-            <button type="button" onClick={() => onPagBtn(-1)}>
-              Prev page
-            </button>
-          )}
-          <button type="button" onClick={() => onPagBtn(1)}>
-            Next page
-          </button>
+          <Controls>
+            {page > 1 && (
+              <Btn as="button" type="button" onClick={() => onPagBtn(-1)}>
+                Prev page
+              </Btn>
+            )}
+            {page < totalPages && (
+              <Btn as="button" type="button" onClick={() => onPagBtn(1)}>
+                Next page
+              </Btn>
+            )}
+          </Controls>
         </>
       )}
     </>

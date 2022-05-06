@@ -4,7 +4,7 @@ import { fetchMovieDetails } from 'services/api-service';
 import {
   MovieInfo,
   MovieDetails,
-  BtnLink,
+  Btn,
   BackdropPoster,
   MovieTitle,
 } from './MovieDetailsPage.styled';
@@ -15,12 +15,11 @@ import backdrop from '../images/backdrop.jpg';
 import poster from '../images/poster.jpg';
 import { Suspense } from 'react';
 
-const MovieDetailsPage = ({ loc }) => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const [movie, status] = useFetching(fetchMovieDetails, movieId);
 
-  console.log(location.state.from);
   return (
     <div>
       {status === statusList.ERR && (
@@ -58,7 +57,7 @@ const MovieDetailsPage = ({ loc }) => {
 
               <span className="info-block">
                 <p>Rating:</p>
-                <p> {movie.vote_average ?? 'No information'}</p>
+                <p> {movie.vote_average || 'No information'}</p>
               </span>
 
               <span className="info-block">
@@ -77,12 +76,15 @@ const MovieDetailsPage = ({ loc }) => {
               </span>
             </MovieInfo>
           </MovieDetails>
-          <BtnLink to={location?.state?.from ?? '/'}>Go back</BtnLink>
+          <Btn to={location?.state?.from ?? '/'}>Go back</Btn>
           <hr />
-          <StyledLink to="cast" state={{ from: location.state.from }}>
+          <StyledLink to="cast" state={{ from: location?.state?.from ?? '/' }}>
             Cast
           </StyledLink>
-          <StyledLink to="reviews" state={{ from: location.state.from }}>
+          <StyledLink
+            to="reviews"
+            state={{ from: location?.state?.from ?? '/' }}
+          >
             Reviews
           </StyledLink>
           <hr />

@@ -3,6 +3,8 @@ import { fetchMovieCredits } from 'services/api-service';
 import { useFetching } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
 import { statusList } from 'hooks/useFetching';
+import { CastList } from './Cast.styled';
+import insteadPhoto from '../../images/actor.png';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -18,11 +20,22 @@ const Cast = () => {
       )}
       {status === statusList.LOAD && <Loading />}
       {status === statusList.IDLE && actors && (
-        <ul>
+        <CastList>
           {actors.map(actor => (
-            <li key={actor.id}>{actor.name}</li>
+            <li key={actor.id}>
+              <img
+                src={
+                  actor.profile_path
+                    ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                    : insteadPhoto
+                }
+                alt={actor.name}
+              />
+              <span>{actor.name}</span>
+              <p>{`Role: ${actor.character}`}</p>
+            </li>
           ))}
-        </ul>
+        </CastList>
       )}
     </>
   );

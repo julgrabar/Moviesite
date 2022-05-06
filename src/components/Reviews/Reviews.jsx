@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/api-service';
-import { useFetching } from 'hooks/useFetching';
+import { useFetching, statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
-import { statusList } from 'hooks/useFetching';
+import { ReviewItem } from './Rewievs.styled';
 
-// добавить заглушку если нет отзывов и вообще все заглушки
 const Reviews = () => {
   const page = 1;
   const { movieId } = useParams();
@@ -19,11 +18,11 @@ const Reviews = () => {
       {status === statusList.LOAD && <Loading />}
       {status === statusList.IDLE && reviews && (
         <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <p>{review.author}</p>
-              <p>{review.content}</p>
-            </li>
+          {reviews.map(({ id, author, content }) => (
+            <ReviewItem key={id}>
+              <span>{author}</span>
+              <p>{content}</p>
+            </ReviewItem>
           ))}
         </ul>
       )}
