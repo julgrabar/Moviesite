@@ -11,5 +11,5 @@ export const usePagination = init => {
     });
   };
 
-  return [page, onPagBtn];
+  return [page, onPagBtn, setPage];
 };

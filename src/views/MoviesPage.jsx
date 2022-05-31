@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { FilmsList } from 'components/FilmsList/FilmsList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { useFetching } from 'hooks/useFetching';
@@ -11,26 +11,34 @@ import { Btn, Controls } from './MovieDetailsPage.styled';
 import { usePagination } from 'hooks/usePagination';
 
 const MoviesPage = () => {
-  const [page, onPagBtn] = usePagination(1);
+  const { search, pathname } = useLocation();
+  const queryPage = Number(new URLSearchParams(search).get('page'));
+  const [page, onPagBtn, setPage] = usePagination(queryPage || 1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchResult, status, totalPages] = useFetching(
     searchMovies,
     page,
     searchParams.get('query') || ''
   );
-  const { search, pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const query = new URLSearchParams(search).get('query');
     if (query) {
       setSearchParams({ query });
+      navigate(`${pathname}?query=${query}&page=${page}`, { replace: true });
     }
-  }, [search, setSearchParams]);
+  }, [search, setSearchParams, page, navigate, pathname]);
+
+  const onSearchSubmit = obj => {
+    setSearchParams(obj);
+    setPage(1);
+  };
 
   return (
     <>
       <Head>Movies search</Head>
-      <SearchForm onSub={setSearchParams} />
+      <SearchForm onSub={onSearchSubmit} />
 
       {status === statusList.ERR && (
         <p>Something is wrong... Try to reload the page</p>

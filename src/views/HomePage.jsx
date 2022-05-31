@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FilmsList } from 'components/FilmsList/FilmsList';
 import { Loading } from 'components/Loading/Loading';
 import { fetchTrending } from 'services/api-service';
@@ -7,11 +7,19 @@ import { statusList } from 'hooks/useFetching';
 import { Head } from './Head.styled';
 import { Btn, Controls } from './MovieDetailsPage.styled';
 import { usePagination } from 'hooks/usePagination';
+import { useEffect } from 'react';
 
 const HomePage = () => {
-  const [page, onPagBtn] = usePagination(1);
-  const [films, status, totalPages] = useFetching(fetchTrending, page, null);
   const { pathname, search } = useLocation();
+  const queryPage = Number(new URLSearchParams(search).get('page'));
+  const [page, onPagBtn] = usePagination(queryPage || 1);
+  const [films, status, totalPages] = useFetching(fetchTrending, page, null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(`/?page=${page}`, { replace: true });
+  }, [page, navigate]);
 
   return (
     <>

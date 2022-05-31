@@ -1,5 +1,5 @@
 import { useFetching } from 'hooks/useFetching';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api-service';
 import {
   MovieInfo,
@@ -8,12 +8,10 @@ import {
   BackdropPoster,
   MovieTitle,
 } from './MovieDetailsPage.styled';
-import { StyledLink } from './MovieDetailsPage.styled';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
 import backdrop from '../images/backdrop.jpg';
 import poster from '../images/poster.jpg';
-import { Suspense } from 'react';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -74,23 +72,9 @@ const MovieDetailsPage = () => {
                 <p>Genres</p>{' '}
                 <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
               </span>
+              <Btn to={location?.state?.from ?? '/'}>Go back</Btn>
             </MovieInfo>
           </MovieDetails>
-          <Btn to={location?.state?.from ?? '/'}>Go back</Btn>
-          <hr />
-          <StyledLink to="cast" state={{ from: location?.state?.from ?? '/' }}>
-            Cast
-          </StyledLink>
-          <StyledLink
-            to="reviews"
-            state={{ from: location?.state?.from ?? '/' }}
-          >
-            Reviews
-          </StyledLink>
-          <hr />
-          <Suspense fallback={<Loading />}>
-            <Outlet />
-          </Suspense>
         </>
       )}
     </div>
