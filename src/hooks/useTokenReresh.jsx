@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshTokenRequest } from 'redux/auth/authOperations';
 import { getToken } from 'redux/auth/authSelectors';
 import { logoutUser, refreshToken } from 'redux/auth/authSlice';
 import { authInstance, refreshTokenQuery } from '../services/api-service';

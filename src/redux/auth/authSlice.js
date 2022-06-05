@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
-import { loginRequest, refreshTokenRequest, userDataRequest} from "./authOperations";
+import { loginRequest,  userDataRequest} from "./authOperations";
 
 const init = {
     username:null,
