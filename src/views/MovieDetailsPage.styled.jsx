@@ -55,22 +55,47 @@ export const StyledLink = styled(Link)`
 
 export const Btn = styled(Link)`
   display: inline-block;
-  padding: 16px 32px;
+  padding: 14px 18px;
   background-color: #7b6ef6;
   color: white;
   border-radius: 12px;
   border: none;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    transform: scale(1.1);
+  }
 
   :not(:last-child) {
-    margin-right: 16px;
+    margin-right: 8px;
+  }
+  :not(:first-child) {
+    margin-left: 8px;
+  }
+
+  &.current {
+    transform: scale(1.15);
+    margin: 0 14px;
+    cursor: auto;
+  }
+
+  @media screen and (max-width: 480px) {
+    &.hide-btn {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 8px;
+    border-radius: 8px;
   }
 `;
 
-export const Controls = styled.div`
+export const PagWrapper = styled.div`
   text-align: center;
-  padding: 32px 0;
+  padding: 48px 0;
 `;
 
 export const BackdropPoster = styled.div`

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: 350px;
-  margin-bottom: 52px;
+export const StyledLoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
   input {
     background: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -21,17 +20,19 @@ export const Form = styled.form`
 
     color: #475069;
 
-    &:focus {
-      border: 1px solid #323b54;
+    :not(:last-child) {
+      margin-bottom: 16px;
     }
   }
+
   button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: inherit;
+    background-color: #7b6ef6;
+    color: white;
+    border-radius: 12px;
     border: none;
+    text-decoration: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 16px 18px;
+    margin-top: 40px;
   }
 `;

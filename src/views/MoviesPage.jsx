@@ -7,13 +7,13 @@ import { searchMovies } from 'services/api-service';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
 import { Head } from './Head.styled';
-import { Btn, Controls } from './MovieDetailsPage.styled';
 import { usePagination } from 'hooks/usePagination';
+import { Pagination } from 'components/Pagination/Pagination';
 
 const MoviesPage = () => {
   const { search, pathname } = useLocation();
   const queryPage = Number(new URLSearchParams(search).get('page'));
-  const [page, onPagBtn, setPage] = usePagination(queryPage || 1);
+  const [page, setPage] = usePagination(queryPage || 1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchResult, status, totalPages] = useFetching(
     searchMovies,
@@ -52,18 +52,9 @@ const MoviesPage = () => {
           ) : (
             <FilmsList films={searchResult} loc={pathname + search} />
           )}
-          <Controls>
-            {page > 1 && (
-              <Btn as="button" type="button" onClick={() => onPagBtn(-1)}>
-                Prev page
-              </Btn>
-            )}
-            {page < totalPages && (
-              <Btn as="button" type="button" onClick={() => onPagBtn(1)}>
-                Next page
-              </Btn>
-            )}
-          </Controls>
+          {totalPages > 1 && (
+            <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+          )}
         </>
       )}
     </>

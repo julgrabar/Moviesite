@@ -27,3 +27,12 @@ export const Nav = styled.nav`
     color: #a8aebf;
   }
 `;
+
+export const UserBar = styled.div`
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  button {
+    margin-left: 12px;
+  }
+`;

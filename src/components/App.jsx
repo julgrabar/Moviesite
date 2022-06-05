@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { LoginPage } from 'views/LoginView';
+import { SignupPage } from 'views/SignupPage';
 import { Layout } from './Layout/Layout';
 import { Loading } from './Loading/Loading';
 
@@ -21,6 +23,8 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignupPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
