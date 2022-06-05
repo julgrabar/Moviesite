@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
 import { getUserData, login, refreshTokenQuery, signUp } from "services/api-service";
-import { getToken } from "./authSelectors";
+
 
 const notify = (message) => toast(message,{
         style: {
