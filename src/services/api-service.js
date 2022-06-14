@@ -33,7 +33,6 @@ export const authInstance = axios.create({
     baseURL: "https://notifications--app.herokuapp.com/api/"
 })
 
-
 export const signUp = async (userData) => {
     const response =await authInstance.post("/register/", userData);
     return response
@@ -45,7 +44,7 @@ export const login = async (userData) => {
 }
 export const getUserData = async () => {
     const response =await authInstance.get("/user/");
-    return response.data.username
+    return response.data?.username
 }
 
 export const logout = () =>{
@@ -53,7 +52,6 @@ export const logout = () =>{
 }
 
 export const refreshTokenQuery = async (refreshToken) =>{
-     const response =await axios.post("/token/refresh/",{refresh: refreshToken});
+     const response =await axios.post("https://notifications--app.herokuapp.com/api/token/refresh/",{refresh: refreshToken});
     return response.data.access
-    // console.log(response.data.access)
 }

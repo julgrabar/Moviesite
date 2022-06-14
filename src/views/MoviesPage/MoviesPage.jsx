@@ -6,7 +6,7 @@ import { useFetching } from 'hooks/useFetching';
 import { searchMovies } from 'services/api-service';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
-import { Head } from './Head.styled';
+import { Head } from '../Head.styled';
 import { usePagination } from 'hooks/usePagination';
 import { Pagination } from 'components/Pagination/Pagination';
 

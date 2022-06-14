@@ -10,8 +10,8 @@ import {
 } from './MovieDetailsPage.styled';
 import { statusList } from 'hooks/useFetching';
 import { Loading } from 'components/Loading/Loading';
-import backdrop from '../images/backdrop.jpg';
-import poster from '../images/poster.jpg';
+import backdrop from '../../images/backdrop.jpg';
+import poster from '../../images/poster.jpg';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();

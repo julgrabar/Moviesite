@@ -22,7 +22,6 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm(formOptions);
   const onSubmit = data => {
-    console.log(data);
     dispatch(loginRequest(data));
     resetField('password');
   };

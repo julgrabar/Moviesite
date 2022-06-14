@@ -4,7 +4,7 @@ import { Loading } from 'components/Loading/Loading';
 import { fetchTrending } from 'services/api-service';
 import { useFetching } from 'hooks/useFetching';
 import { statusList } from 'hooks/useFetching';
-import { Head } from './Head.styled';
+import { Head } from '../Head.styled';
 import { usePagination } from 'hooks/usePagination';
 import { useEffect } from 'react';
 import { Pagination } from 'components/Pagination/Pagination';

@@ -34,5 +34,9 @@ export const UserBar = styled.div`
   align-items: center;
   button {
     margin-left: 12px;
+    background-color: transparent;
+    color: #a8aebf;
+    border: none;
+    cursor: pointer;
   }
 `;

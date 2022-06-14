@@ -18,9 +18,9 @@ export const signUpRequest = createAsyncThunk(
         try {
             await signUp(userData);
             notify("You have been successfuly registered")
-            return true
         } catch (error) {
             notify(error.response?.data?.password?.join(" "))
+            rejectWithValue(error.message)
         }
     }
 )
@@ -30,35 +30,35 @@ export const loginRequest = createAsyncThunk(
     async (userData, {rejectWithValue}) =>{
         try {
             const response = await login(userData);
-            localStorage.getItem(JSON.stringify(response))
             notify(`Welcome, ${response.username}!`)
             return response
         } catch (error) {
             notify(error.response?.data?.detail) 
-            console.log(error)
+            rejectWithValue(error.message)
         }
     }
 )
 
 export const refreshTokenRequest = createAsyncThunk(
     "auth/refreshToken",
-    async (refreshToken) =>{
+    async (refreshToken, {rejectWithValue}) =>{
         try {
             const response = await refreshTokenQuery(refreshToken);
             return  response
         } catch (error) {
-            console.log(error)
+            rejectWithValue(error.message)
     }}
 )
 
 export const userDataRequest = createAsyncThunk(
     "auth/refreshUser",
-    async () =>{
+    async (_, {rejectWithValue}) =>{
         try {
             const response = await getUserData();
             return  response
         } catch (error) {
             console.log(error)
+            return rejectWithValue(error.message)
         }
     }
 )

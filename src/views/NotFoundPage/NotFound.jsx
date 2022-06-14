@@ -1,5 +1,5 @@
-import notFoundImg from '../images/notFound.svg';
-import { Btn } from './MovieDetailsPage.styled';
+import notFoundImg from '../../images/notFound.svg';
+import { Btn } from '../MovieDetailsPage/MovieDetailsPage.styled';
 import { NotFoundContainer } from './NotFound.styled';
 
 const NotFoundPage = () => {

@@ -38,7 +38,6 @@ export const RegisterForm = () => {
   } = useForm(formOptions);
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(signUpRequest(data));
     reset();
   };

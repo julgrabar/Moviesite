@@ -11,8 +11,8 @@ import { useTokenRefresh } from 'hooks/useTokenReresh';
 
 export const Layout = () => {
   const token = useSelector(getToken);
-  useTokenRefresh();
   const dispatch = useDispatch();
+  useTokenRefresh();
 
   useEffect(() => {
     if (token.access) {

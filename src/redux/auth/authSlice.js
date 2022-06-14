@@ -16,20 +16,11 @@ export const authSlice = createSlice({
         return {
             ...init
         }
-
-    },
-    refreshToken (state, {payload}) {
-        console.log(payload)
-        return {
-        ...state,
-        token:{...state.token, access: payload}
-    }
     }
     },
     extraReducers: {
         [loginRequest.fulfilled]: (state, {payload})=>({...state, isLoggedIn: true, token: payload.token, username: payload.username}), 
         [userDataRequest.fulfilled]: (state, {payload})=>({...state,isLoggedIn: true,username:payload}),
-        [userDataRequest.rejected]: ()=> console.log("hi")
         
 
   }

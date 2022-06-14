@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import loginMen from '../images/loginMen.png';
+import loginMen from '../../images/loginMen.png';
 
 export const LoginFormWrapper = styled.div`
   width: 100%;

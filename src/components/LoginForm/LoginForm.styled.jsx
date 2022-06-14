@@ -10,6 +10,7 @@ export const StyledLoginForm = styled.form`
     width: 100%;
 
     border: 1px solid #323b54;
+    outline: none;
 
     border-radius: 12px;
     box-sizing: border-box;

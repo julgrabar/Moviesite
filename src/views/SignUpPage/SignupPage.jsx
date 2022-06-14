@@ -1,6 +1,6 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { Head } from './Head.styled';
-import { LoginFormWrapper } from './LoginView.styled';
+import { Head } from '../Head.styled';
+import { LoginFormWrapper } from '../LoginPage/LoginPage.styled';
 
 export const SignupPage = () => {
   return (

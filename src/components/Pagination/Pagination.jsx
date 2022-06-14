@@ -1,4 +1,7 @@
-import { Btn, PagWrapper } from 'views/MovieDetailsPage.styled';
+import {
+  Btn,
+  PagWrapper,
+} from 'views/MovieDetailsPage/MovieDetailsPage.styled';
 
 export const Pagination = ({ page, setPage, totalPages }) => {
   return (

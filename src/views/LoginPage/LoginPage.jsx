@@ -1,6 +1,6 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Head } from './Head.styled';
-import { LoginFormWrapper } from './LoginView.styled';
+import { Head } from '../Head.styled';
+import { LoginFormWrapper } from './LoginPage.styled';
 
 export const LoginPage = () => {
   return (

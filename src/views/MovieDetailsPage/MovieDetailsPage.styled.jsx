@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const MovieDetails = styled.div`
   display: flex;
   max-width: 100vw;
-  padding: 0 80px;
+  padding: 0 80px 40px 80px;
 
   img {
     border-radius: 24px;
